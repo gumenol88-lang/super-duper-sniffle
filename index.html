@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Spaceman Predictor - ZXTY</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: radial-gradient(circle at top, #0a0f2c, #000);
+        color: white;
+        height: 100vh;
+    }
+
+    .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .box {
+        background: rgba(0,0,0,0.7);
+        padding: 25px;
+        border-radius: 12px;
+        width: 300px;
+        box-shadow: 0 0 20px cyan;
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 15px;
+        color: cyan;
+        letter-spacing: 1px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: cyan;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: #00ffffaa;
+    }
+
+    .error {
+        color: red;
+        font-size: 13px;
+        margin-top: 8px;
+    }
+
+    .predict-box {
+        text-align: center;
+    }
+
+    .result {
+        font-size: 28px;
+        margin: 20px 0;
+        color: lime;
+        text-shadow: 0 0 10px lime;
+    }
+
+    .logout {
+        background: red;
+        color: white;
+        margin-top: 15px;
+    }
+
+    .brand {
+        font-size: 12px;
+        opacity: 0.6;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div class="center" id="loginPage">
+    <div class="box">
+        <h2>LOGIN ZXTY</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">LOGIN</button>
+        <div class="error" id="errorMsg"></div>
+        <div class="brand">Spaceman Predictor v1.0</div>
+    </div>
+</div>
+
+<!-- PREDICTOR PAGE -->
+<div class="center" id="predictPage" style="display:none;">
+    <div class="box predict-box">
+        <h2>🚀 SPACEMAN PREDICTOR</h2>
+        <div>Klik tombol untuk prediksi multiplier</div>
+        <div class="result" id="result">--.--x</div>
+        <button onclick="predict()">PREDICT</button>
+        <button class="logout" onclick="logout()">LOGOUT</button>
+        <div class="brand">Powered by ZXT Y</div>
+    </div>
+</div>
+
+<script>
+function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const error = document.getElementById("errorMsg");
+
+    if (user === "123" && pass === "zxty") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("predictPage").style.display = "flex";
+    } else {
+        error.innerText = "Username atau Password salah!";
+    }
+}
+
+function logout() {
+    document.getElementById("predictPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "flex";
+    document.getElementById("result").innerText = "--.--x";
+}
+
+function predict() {
+    // Random ala Spaceman (lebih sering rendah, kadang tinggi)
+    let r = Math.random();
+    let value;
+
+    if (r < 0.6) value = (1 + Math.random() * 1.5);
+    else if (r < 0.9) value = (2.5 + Math.random() * 3);
+    else value = (6 + Math.random() * 20);
+
+    document.getElementById("result").innerText = value.toFixed(2) + "x";
+}
+</script>
+
+</body>
+</html>
